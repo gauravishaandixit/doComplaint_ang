@@ -17,13 +17,13 @@ public class StudentService {
 
     boolean doesStudentExists(Student student)
     {
-        Student student1 = studentRepository.findStudentByUsernameAndPassword(student.getUsername(), student.getPassword());
+        Student student1 = studentRepository.findStudentByRollnumberAndPassword(student.getRollnumber(), student.getPassword());
         return student1 == null ? false : true;
     }
 
     boolean addStudent(Student student)
     {
-        Student student1 = studentRepository.findStudentByUsername(student.getUsername());
+        Student student1 = studentRepository.findStudentByRollnumber(student.getRollnumber());
         if(student1 == null)
         {
             studentRepository.save(student);

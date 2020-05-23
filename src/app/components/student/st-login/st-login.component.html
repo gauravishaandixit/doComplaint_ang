@@ -12,14 +12,16 @@
     <br>
     <br><br>
     <form>
-        <input type = "text" name = "username" [(ngModel)] = "student.username" placeholder = "Enter Username" required = "true"/>
+        <div style="text-align: center;">{{message}}</div>
+        <br>
+        <input type = "text" name = "rollnumber" [(ngModel)] = "student.rollnumber" placeholder = "Enter RollNumber" required = "true"/>
         <br>
         <input type = "password" name = "password" [(ngModel)] = "student.password" placeholder = "Enter Password" required = "true"/>
         <br>
-        <input type = "submit" value = "Login" (click) = "Login()">
+        <input  type = "submit" value = "Login" (click) = "Login()">
     </form>
     <br><br>
-    <a ><button class="button">Register</button></a>
+    <a routerLink = "/stregister"><button class="button">Register</button></a>
 </div>
 </body>
 </html>

@@ -10,20 +10,31 @@ import { FormsModule} from '@angular/forms'
 import { HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { StComplaintsComponent } from './components/student/st-complaints/st-complaints.component';
+import { StRegisterComponent } from './components/student/st-register/st-register.component';
+import { RouterModule } from '@angular/router';
+import { AdLoginComponent } from './components/admin/ad-login/ad-login.component';
+import { AdComplaintsComponent } from './components/admin/ad-complaints/ad-complaints.component';
+import { AdRegisterComponent } from './components/admin/ad-register/ad-register.component';
+import { AdminService } from './services/admin.service';
 @NgModule({
   declarations: [
     AppComponent,
     StLoginComponent,
     HomeComponent,
-    StComplaintsComponent
+    StComplaintsComponent,
+    StRegisterComponent,
+    AdLoginComponent,
+    AdComplaintsComponent,
+    AdRegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
-  providers: [StudentService],
+  providers: [StudentService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

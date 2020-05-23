@@ -2,22 +2,22 @@ package com.doComplaint.complaint;
 
 public class StudentComplaint {
 
-    private String username;
+    private String rollnumber;
     private String issue;
 
-    public String getUsername() {
-        return username;
-    }
+  public String getRollnumber() {
+    return rollnumber;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setRollnumber(String rollnumber) {
+    this.rollnumber = rollnumber;
+  }
 
-    public String getIssue() {
-        return issue;
-    }
+  public String getIssue() {
+    return issue;
+  }
 
-    public void setIssue(String issue) {
-        this.issue = issue;
-    }
+  public void setIssue(String issue) {
+    this.issue = issue;
+  }
 }

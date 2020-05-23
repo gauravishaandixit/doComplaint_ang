@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Complaint } from '../../Complaint';
 import { StudentComplaint } from '../StudentComplaint';
 import { StudentService } from 'src/app/services/student.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-st-complaints',
@@ -12,27 +13,54 @@ export class StComplaintsComponent implements OnInit {
 
   complaints: any;
   newComplaint: StudentComplaint = new StudentComplaint("","");
-  username:String;
+  rollnumber:String;
   status:String = "";
+  complaint:Complaint;
 
-  constructor(private studentService: StudentService) {
-    this.username = sessionStorage.getItem("username");
+  constructor(
+    private studentService: StudentService,
+    private router:Router
+    ) {
+    this.rollnumber = sessionStorage.getItem("rollnumber");
   }
 
   ngOnInit(): void {
-    this.username = sessionStorage.getItem("username");
-    this.studentService.getComplaints(sessionStorage.getItem("username").toString())
-    .subscribe((data)=> this.complaints = data);
+    this.rollnumber = sessionStorage.getItem("rollnumber");
+    if(this.rollnumber == "loggedout")
+      this.router.navigate([""]);
+    
+    else
+    {
+      console.log(this.rollnumber);
+      this.studentService.getComplaints(sessionStorage.getItem("rollnumber").toString())
+      .subscribe((data)=> this.complaints = data);
+    }
   }
   addComplaint()
   {
-    this.newComplaint.name = sessionStorage.getItem("username");
+    this.newComplaint.rollnumber = sessionStorage.getItem("rollnumber");
     this.studentService.addComplaint(this.newComplaint)
-    .subscribe((data) => this.status = data.toString());
+    .subscribe((data) => {
+      this.status = data.toString();
+      console.log(this.status.toString());
+      this.newComplaint.issue = "";
+      this.router.navigate(['stcomplaints']);
+    });
   }
 
   updateComplaint(id:number)
   {
-    this.studentService.updateComplaint(id);
+    this.complaint= new Complaint(id,"","","","","","")
+    console.log(this.complaint.id);
+    let response = this.studentService.updateComplaint(this.complaint);
+    response.subscribe((data)=>console.log(data.toString()))
+    this.router.navigate(["stcomplaints"]);
+  }
+
+  logout()
+  {
+    sessionStorage.setItem("rollnumber","loggedout");
+    console.log(sessionStorage.getItem("rollnumber"));
+    this.router.navigate([""]);
   }
 }

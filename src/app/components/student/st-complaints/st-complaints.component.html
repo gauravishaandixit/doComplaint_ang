@@ -1,4 +1,3 @@
-<html>
 <head>
     <title>Your Complaints</title>
 </head>
@@ -6,17 +5,17 @@
 <ul>
     <li><a>Home</a></li>
     <li><a>Rent/To-let</a></li>
-    <li style = "float:right" class="active"><a>Logout</a></li>
+    <li style = "float:right" class="active"><a><button (click)="logout()">Logout</button></a></li>
     <li style = "float:right"><a>Your Profile</a></li>
 
 </ul>
 
 <div style="text-align: center;">
-    <h1>Hello {{username}} </h1>
+    <h1>Hello {{rollnumber}} </h1>
     <h2>Your Complaints Are Below</h2>
     <br><br>
     <div style="color: darkorange">{{status}}</div>
-    <form #myForm="ngForm" (ngSubmit)="addComplaint()">
+    <form>
         <input type="text" name = "issue" [(ngModel)] = "newComplaint.issue" placeholder="Enter New Complaint" name="issue">
         <input type="submit" value="Add" (click) = "addComplaint()">
     </form>
@@ -24,7 +23,7 @@
     <br><br>
         <table class="center" id = "complaints">
             <thead>
-                <tr *ngIf = "complaints">
+                <tr *ngIf = "complaints?.length">
                     <th>ID</th>
                     <th>Time Stamp</th>
                     <th>Issue</th>
@@ -43,4 +42,3 @@
             </tbody>
         </table>
 </body>
-</html>

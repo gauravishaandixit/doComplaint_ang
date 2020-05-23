@@ -39,25 +39,27 @@ public class StudentController {
         return "User Already Exists!!!";
     }
 
-    @RequestMapping(value = "/yourcomplaints/{username}", method = RequestMethod.GET)
-    public List<StudentComplaintTable> getAllComplaints(@PathVariable String username)
+    @RequestMapping(value = "/yourcomplaints/{rollnumber}", method = RequestMethod.GET)
+    public List<StudentComplaintTable> getAllComplaints(@PathVariable String rollnumber)
     {
-        System.out.println("your:: "+username);
-        Student student = studentService.findStudentByUsername(username);
+        System.out.println("you are:: "+rollnumber);
+        Student student = studentService.findStudentByRollnumber(rollnumber);
 
-        System.out.println("your::: "+student.getUsername());
+        System.out.println("you are::: "+student.getUsername());
         List<Complaint> complaints = new ArrayList<>(student.getComplaints());
-        Collections.sort(complaints, (c1, c2) -> c2.getTimestamp().compareTo(c1.getTimestamp()));
+        Collections.sort(complaints, (c1, c2) -> c2.getId().compareTo(c1.getId()));
 
         List<StudentComplaintTable> studentComplaintTableList = new StudentComplaintTable().changeStructure(complaints);
         return studentComplaintTableList;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    String updateStatus(@RequestBody String id)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    String updateStatus(@RequestBody Complaint complaint)
     {
-        System.out.println(id);
-        String flag = studentService.updateStatus(Long.parseLong(id));
+        System.out.println("In Update");
+        System.out.println(complaint.getId());
+        String flag = studentService.updateStatus(complaint.getId());
+      System.out.println(flag);
         return  flag;
     }
 }

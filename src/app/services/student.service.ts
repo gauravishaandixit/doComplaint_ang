@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Student } from '../components/student/Student';
 import { StudentComplaint } from '../components/student/StudentComplaint';
+import { Complaint } from '../components/Complaint';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,17 @@ export class StudentService {
   {
     return this.http.post("http://localhost:8090/addComplaint",newComplaint,{responseType:'text' as 'json'});
   }
-  updateComplaint(id:number)
+  updateComplaint(complaint:Complaint)
   {
-    return this.http.put("http://localhost:8090/student/update",id);
+    //console.log(complaint.id);
+    let res =  this.http.post("http://localhost:8090/student/update",complaint,{responseType:'text' as 'json'});
+    //console.log(complaint.id);
+    return res;
+  }
+
+
+  register(student: Student)
+  {
+    return this.http.post("http://localhost:8090/student/register",student,{responseType:'text' as 'json'});
   }
 }

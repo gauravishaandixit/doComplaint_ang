@@ -34,9 +34,9 @@ public class ComplaintController {
     public String addNewComplaint(@RequestBody StudentComplaint studentComplaint)
     {
         Complaint complaint = new Complaint();
-        System.out.println("Add Complaint Username:: "+ studentComplaint.getUsername());
+        System.out.println("Add Complaint Username:: "+ studentComplaint.getRollnumber());
 
-        Student student = studentService.findStudentByUsername(studentComplaint.getUsername());
+        Student student = studentService.findStudentByRollnumber(studentComplaint.getRollnumber());
 
         complaint.setIssue(studentComplaint.getIssue());
         complaint.addStudent(student);

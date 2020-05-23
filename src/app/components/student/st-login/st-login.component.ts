@@ -25,17 +25,19 @@ export class StLoginComponent implements OnInit {
   Login()
   {
     let response = this.studentService.login(this.student);
-    response.subscribe((data)=>this.status = data.toString());
-    console.log(status);
-    if(this.status == "TRUE")
-    {
-      sessionStorage.setItem("username", this.student.username.toString());
-      this.router.navigate(['stcomplaints'])
-    }
-    else
-    {
-      this.message = "User Does Not Exist or Username/Password Is Wrong!!!";
-      //this.router.navigate(['stlogin']);
-    }
+    response.subscribe((data)=>{
+      this.status = data.toString();
+      if(this.status == "TRUE")
+      {
+        sessionStorage.setItem("rollnumber", this.student.rollnumber.toString());
+        this.router.navigate(['stcomplaints'])
+      }
+      else
+      {
+        this.message = "User Does Not Exist or Username/Password Is Wrong!!!";
+        //this.router.navigate(['stlogin']);
+      }
+    });
+    console.log(status.toString());
   }
 }
