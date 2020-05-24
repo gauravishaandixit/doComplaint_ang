@@ -45,19 +45,21 @@ public class AdminService {
         return complaintService.findAll();
     }
 
-    public void updateStatus(Long id)
+    public String updateStatus(Long id)
     {
 
         Complaint complaint = complaintService.findById(id);
 
         if(complaint == null)
-            return;
+            return "Not Found";
 
         if(complaint.getStatus().equals("resolved"))
             complaint.setStatus("unresolved");
         else
             complaint.setStatus("resolved");
         complaintService.addComplaint(complaint);
+
+        return complaint.getStatus();
     }
 
 

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class StComplaintsComponent implements OnInit {
 
-  complaints: any;
+  complaints: Complaint[];
   newComplaint: StudentComplaint = new StudentComplaint("","");
   rollnumber:String;
   status:String = "";
@@ -20,11 +20,9 @@ export class StComplaintsComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private router:Router
-    ) {
-    this.rollnumber = sessionStorage.getItem("rollnumber");
-  }
+    ) {}
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.rollnumber = sessionStorage.getItem("rollnumber");
     if(this.rollnumber == "loggedout")
       this.router.navigate([""]);
@@ -44,7 +42,7 @@ export class StComplaintsComponent implements OnInit {
       this.status = data.toString();
       console.log(this.status.toString());
       this.newComplaint.issue = "";
-      this.router.navigate(['stcomplaints']);
+      this.ngOnInit();
     });
   }
 
@@ -54,7 +52,7 @@ export class StComplaintsComponent implements OnInit {
     console.log(this.complaint.id);
     let response = this.studentService.updateComplaint(this.complaint);
     response.subscribe((data)=>console.log(data.toString()))
-    this.router.navigate(["stcomplaints"]);
+    this.ngOnInit();
   }
 
   logout()

@@ -18,7 +18,7 @@ export class StudentService {
 
   getComplaints(username:String)
   {
-    return this.http.get("http://localhost:8090/student/yourcomplaints/"+username);
+    return this.http.get<Complaint[]>("http://localhost:8090/student/yourcomplaints/"+username);
   }
   addComplaint(newComplaint: StudentComplaint)
   {

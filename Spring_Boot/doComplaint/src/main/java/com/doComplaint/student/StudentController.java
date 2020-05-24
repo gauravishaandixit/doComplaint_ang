@@ -59,7 +59,7 @@ public class StudentController {
         System.out.println("In Update");
         System.out.println(complaint.getId());
         String flag = studentService.updateStatus(complaint.getId());
-      System.out.println(flag);
+        System.out.println(flag);
         return  flag;
     }
 }
