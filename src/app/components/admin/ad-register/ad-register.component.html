@@ -8,17 +8,16 @@
 <div style="text-align: center;">
     <h2 style="color: #555555"> Admin Registration </h2>
     <form>
-
-        <div style="color: darkorange"></div>
-        <input type="text" path = "username" placeholder = "Enter Username" required = "true"/>
+        <div style="color: darkorange">{{message}}</div>
+        <input type="text" name = "username" [(ngModel)] = "admin.username" placeholder = "Enter Username" required = "true"/>
         <br>
-        <input path="password" type = "password" placeholder = "Enter Password" required = "true"/>
+        <input name="password" type = "password" [(ngModel)] = "admin.password" placeholder = "Enter Password" required = "true"/>
         <br>
-        <input type = "text" path = "mobile" placeholder = "Enter Mobile Number" required = "true"/>
+        <input type = "text" name = "mobile" [(ngModel)] = "admin.mobile" placeholder = "Enter Mobile Number" required = "true"/>
         <br>
-        <input type = "password" name = "rootpassword" placeholder = "Enter Root Password" required = "true"/>
+        <input type = "password" name = "rootpassword" [(ngModel)] = "rootpassword" placeholder = "Enter Root Password" required = "true"/>
         <br>
-        <input value = "Register" type="submit"/>
+        <input value = "Register" type="submit" (click) = "register()"/>
 
     </form>
 <br><br>

@@ -52,7 +52,6 @@ export class AdComplaintsComponent implements OnInit {
       console.log(data.toString());
       this.ngOnInit();
     });
-    //this.router.navigate(["adcomplaints"]);
   }
   logout()
   {
