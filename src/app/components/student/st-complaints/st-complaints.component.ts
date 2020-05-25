@@ -51,8 +51,10 @@ export class StComplaintsComponent implements OnInit {
     this.complaint= new Complaint(id,"","","","","","")
     console.log(this.complaint.id);
     let response = this.studentService.updateComplaint(this.complaint);
-    response.subscribe((data)=>console.log(data.toString()))
-    this.ngOnInit();
+    response.subscribe((data)=>{
+      console.log(data.toString());
+      this.ngOnInit();
+    });
   }
 
   logout()
